@@ -2,34 +2,35 @@
     <div class="container">
         
         <%= link_to 'FinanceTracker', root_path, class: 'navbar-brand' %>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <% if current_user %>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>   
-            </ul>
-            <ul class='navbar-nav ml auto'>
-                <li class='nav-item'>
-                    <%= link_to("Logout", destroy_user_session_path,
-                    class: "btn btn-xs btn-danger logout-button", method: :delete)%>
-                </li>
-            </ul>
-                
-                <ul form class="form-inline my-0 my-lg-0">
-                    <li>
-                        <input class="form-control mr-sm-0" type="search" placeholder="Search" aria-label="Search">
-                     </li>
-                </ul>
-                     <li>
-                         <button class="btn btn-outline-success my-0 my-sm-0" type="submit">Search</button>
-                     </li>
-               
-            </form>
-    
-        </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                    <li class="nav-item <%= 'active' if request.path == my_portfolio_path %>">
+                    <%= link_to 'My Portfolio', my_portfolio_path, class: 'nav-link' %>
+                       
+                    </ul>
+                    <ul class='navbar-nav ml auto'>
+                        <li class='nav-item'>
+                            <%= link_to("Logout", destroy_user_session_path,
+                            class: "btn btn-xs btn-danger logout-button", method: :delete)%>
+                        </li>
+                    </ul>
+                        
+                        <ul form class="form-inline my-0 my-lg-0">
+                       
+                            <li>
+                                <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
+                            </li>
+                        </ul>
+                            <li>
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </li>
+                    </form>
+                </div>
+            <% end %>
     </div>
 </nav>
